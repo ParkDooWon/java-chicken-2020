@@ -2,6 +2,7 @@ package controller;
 
 import domain.menu.Menu;
 import domain.menu.Menus;
+import domain.table.Quantity;
 import domain.table.Table;
 import domain.table.Tables;
 import view.InputView;
@@ -17,12 +18,13 @@ public class RegisterController implements Controller {
 	public void run(Tables tables, Menus menus) {
 		Table table = inputTable(tables);
 		Menu menu = inputMenu(menus);
-		int quantity = Integer.parseInt(inputQuantity());
+		Quantity inputQuantity = inputQuantity();
 	}
 
-	private String inputQuantity() {
+	private Quantity inputQuantity() {
 		OutputView.printInputQuantity();
-		return InputView.input();
+		int inputQuantity = Integer.parseInt(InputView.input());
+		return Quantity.of(inputQuantity);
 	}
 
 	private Table inputTable(Tables tables) {
