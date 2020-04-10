@@ -1,4 +1,4 @@
-package domain;
+package domain.table;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
 
@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import domain.exception.InvalidQuantityException;
-import domain.table.Quantity;
 
 /**
  *   class description

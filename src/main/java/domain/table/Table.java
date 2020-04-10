@@ -1,14 +1,18 @@
 package domain.table;
 
 public class Table {
-    private final int number;
+	private final int number;
 
-    public Table(final int number) {
-        this.number = number;
-    }
+	public Table(final int number) {
+		this.number = number;
+	}
 
-    @Override
-    public String toString() {
-        return Integer.toString(number);
-    }
+	@Override
+	public String toString() {
+		return Integer.toString(number);
+	}
+
+	public int getNumber() {
+		return this.number;
+	}
 }

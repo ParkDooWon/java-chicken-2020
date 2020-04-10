@@ -1,4 +1,4 @@
-package domain;
+package domain.menu;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
@@ -12,9 +12,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import domain.exception.InvalidMenuException;
-import domain.menu.Menu;
-import domain.menu.MenuRepository;
-import domain.menu.Menus;
 
 /**
  *   class description
@@ -42,7 +39,7 @@ public class MenusTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"0", "7", "20", "23"})
 	void isPresentMenuTest(int menuNumber) {
-		assertThatThrownBy(() -> Menus.getSelectMenu(menuNumber))
+		assertThatThrownBy(() -> menus.getSelectMenu(menuNumber))
 			.isInstanceOf(InvalidMenuException.class)
 			.hasMessage(InvalidMenuException.INVALID_MENU_NUMBER);
 	}
@@ -51,6 +48,6 @@ public class MenusTest {
 	@ParameterizedTest
 	@MethodSource("inputMenus")
 	void getSelectMenuTest(int menuNumber, Menu menu) {
-		assertThat(Menus.getSelectMenu(menuNumber)).isEqualTo(menu);
+		assertThat(menus.getSelectMenu(menuNumber)).isEqualTo(menu);
 	}
 }

@@ -10,13 +10,13 @@ import domain.exception.InvalidMenuException;
  *   @author ParkDooWon
  */
 public class Menus {
-	private static List<Menu> menus;
+	private List<Menu> menus;
 
 	public Menus() {
 		menus = MenuRepository.menus();
 	}
 
-	public static Menu getSelectMenu(int menuNumber) {
+	public Menu getSelectMenu(int menuNumber) {
 		return menus.stream()
 			.filter(m -> m.getNumber() == menuNumber)
 			.findFirst()
