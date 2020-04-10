@@ -37,4 +37,24 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printInputCommand() {
+        System.out.println("## 원하는 기능을 선택하세요.");
+    }
+
+    public static void printError(IllegalArgumentException e) {
+        System.err.println(e.getMessage());
+    }
+
+    public static void printinputTable() {
+        System.out.println("## 테이블을 선택하세요.");
+    }
+
+    public static void printInputMenu() {
+        System.out.println("## 메뉴를 선택하세요.");
+    }
+
+    public static void printInputQuantity() {
+        System.out.println("## 수량을 입력하세요.");
+    }
 }

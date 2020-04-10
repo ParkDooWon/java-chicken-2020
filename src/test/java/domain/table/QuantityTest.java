@@ -31,7 +31,7 @@ public class QuantityTest {
 	@DisplayName("수량이 0 이상이 아니면 예외 발생")
 	@Test
 	void validateMinInputQuantityTest() {
-		assertThatThrownBy(() -> quantity.add("0"))
+		assertThatThrownBy(() -> quantity.add(0))
 			.isInstanceOf(InvalidQuantityException.class)
 			.hasMessage(InvalidQuantityException.LESS_THAN_MIN_QUANTITY);
 	}
@@ -39,7 +39,7 @@ public class QuantityTest {
 	@DisplayName("주문된 수량이 99를 초과하는 경우 예외 발생")
 	@ParameterizedTest
 	@CsvSource({"1, 99", "99, 1"})
-	void validateMaxTotalQuantityTest(String beforeQuantity, String afterQuantity) {
+	void validateMaxTotalQuantityTest(int beforeQuantity, int afterQuantity) {
 		quantity = quantity.add(beforeQuantity);
 		assertThatThrownBy(() -> quantity.add(afterQuantity))
 			.isInstanceOf(InvalidQuantityException.class)

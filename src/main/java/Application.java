@@ -1,8 +1,9 @@
-import controller.Controller;
+import controller.POS;
 
 public class Application {
     // TODO 구현 진행
     public static void main(String[] args) {
-        new Controller.run();
+        POS POS = new POS();
+        POS.run();
     }
 }

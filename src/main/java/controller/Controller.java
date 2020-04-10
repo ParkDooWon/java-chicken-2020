@@ -8,9 +8,6 @@ import domain.table.Tables;
  *
  *   @author ParkDooWon
  */
-public class Controller {
-	public static class run {
-		final Tables tables = new Tables();
-		final Menus menus = new Menus();
-	}
+public interface Controller {
+	void run(Tables tables, Menus menus);
 }

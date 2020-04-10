@@ -3,10 +3,19 @@ package view;
 import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner scanner = new Scanner(System.in);
+	private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static int inputTableNumber() {
-        System.out.println("## 주문할 테이블을 선택하세요.");
-        return scanner.nextInt();
-    }
+	public static String input() {
+		String input = SCANNER.nextLine();
+		validateNumber(input);
+		return SCANNER.nextLine();
+	}
+
+	private static void validateNumber(String input) {
+		try {
+			Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("입력값은 숫자여야 합니다.");
+		}
+	}
 }

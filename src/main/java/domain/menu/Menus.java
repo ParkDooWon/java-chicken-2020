@@ -22,4 +22,8 @@ public class Menus {
 			.findFirst()
 			.orElseThrow(() -> new InvalidMenuException(InvalidMenuException.INVALID_MENU_NUMBER));
 	}
+
+	public List<Menu> getMenus() {
+		return menus;
+	}
 }

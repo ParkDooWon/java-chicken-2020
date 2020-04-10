@@ -22,4 +22,8 @@ public class Tables {
 			.findFirst()
 			.orElseThrow(() -> new InvalidTableException(InvalidTableException.INVALID_TABLE_NUMBER));
 	}
+
+	public List<Table> getTables() {
+		return tables;
+	}
 }
