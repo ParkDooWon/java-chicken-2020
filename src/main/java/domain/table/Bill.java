@@ -34,4 +34,14 @@ public class Bill {
 			.mapToInt(bill -> bill.getValue().getQuantity())
 			.sum();
 	}
+
+	public int calculateTotal() {
+		return orders.entrySet().stream()
+			.mapToInt(bill -> calculateMenuPrice(bill.getKey(), bill.getValue()))
+			.sum();
+	}
+
+	private int calculateMenuPrice(Menu menu, Quantity quantity) {
+		return menu.getPrice() * quantity.getQuantity();
+	}
 }
