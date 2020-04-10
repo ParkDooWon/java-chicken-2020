@@ -4,6 +4,9 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
 
 import org.junit.jupiter.api.Test;
 
+import domain.menu.Menu;
+import domain.menu.MenuRepository;
+
 /**
  *   class description
  *
@@ -12,8 +15,12 @@ import org.junit.jupiter.api.Test;
 public class BillTest {
 	@Test
 	void addQuantityTest() {
+		Bill bill = new Bill();
+		Menu menu = MenuRepository.menus().get(0);
 		Quantity quantity = Quantity.of(10);
 
-		assertThat(quantity.addedQuantity(10).getQuantity()).isEqualTo(20);
+		bill.addQuantity(menu, quantity);
+
+		assertThat(bill.getBill().get(menu).getQuantity()).isEqualTo(10);
 	}
 }

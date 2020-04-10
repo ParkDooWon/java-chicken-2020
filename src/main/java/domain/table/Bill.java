@@ -21,6 +21,10 @@ public class Bill {
 	}
 
 	public void addQuantity(Menu menu, Quantity quantity) {
-		bill.get(menu).addedQuantity(quantity.getQuantity());
+		bill.put(menu, bill.get(menu).addedQuantity(quantity.getQuantity()));
+	}
+
+	public Map<Menu, Quantity> getBill() {
+		return bill;
 	}
 }
