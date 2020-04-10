@@ -27,4 +27,11 @@ public class Bill {
 	public Map<Menu, Quantity> getOrders() {
 		return orders;
 	}
+
+	public int sumChickenCategory() {
+		return orders.entrySet().stream()
+			.filter(bill -> bill.getKey().isChicken())
+			.mapToInt(bill -> bill.getValue().getQuantity())
+			.sum();
+	}
 }

@@ -23,4 +23,8 @@ public class Menu {
     public int getNumber() {
         return number;
     }
+
+    public boolean isChicken() {
+        return this.category.isChicken();
+    }
 }

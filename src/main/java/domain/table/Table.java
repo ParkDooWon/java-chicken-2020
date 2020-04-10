@@ -11,7 +11,7 @@ public class Table {
 		bill = new Bill();
 	}
 
-	public void addQunatity(Menu menu, Quantity quantity) {
+	public void addQuantity(Menu menu, Quantity quantity) {
 		bill.addQuantity(menu, quantity);
 	}
 
@@ -26,5 +26,9 @@ public class Table {
 	@Override
 	public String toString() {
 		return Integer.toString(number);
+	}
+
+	public int sumChickenCategory() {
+		return bill.sumChickenCategory();
 	}
 }
