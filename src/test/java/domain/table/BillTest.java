@@ -21,6 +21,6 @@ public class BillTest {
 
 		bill.addQuantity(menu, quantity);
 
-		assertThat(bill.getBill().get(menu).getQuantity()).isEqualTo(10);
+		assertThat(bill.getOrders().get(menu).getQuantity()).isEqualTo(10);
 	}
 }

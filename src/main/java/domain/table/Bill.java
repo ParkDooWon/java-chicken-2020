@@ -12,19 +12,19 @@ import domain.menu.MenuRepository;
  *   @author ParkDooWon
  */
 public class Bill {
-	private final Map<Menu, Quantity> bill = new HashMap<>();
+	private final Map<Menu, Quantity> orders = new HashMap<>();
 
 	public Bill() {
 		for (Menu menu : MenuRepository.menus()) {
-			bill.put(menu, Quantity.zero());
+			orders.put(menu, Quantity.zero());
 		}
 	}
 
 	public void addQuantity(Menu menu, Quantity quantity) {
-		bill.put(menu, bill.get(menu).addedQuantity(quantity.getQuantity()));
+		orders.put(menu, orders.get(menu).addedQuantity(quantity.getQuantity()));
 	}
 
-	public Map<Menu, Quantity> getBill() {
-		return bill;
+	public Map<Menu, Quantity> getOrders() {
+		return orders;
 	}
 }
