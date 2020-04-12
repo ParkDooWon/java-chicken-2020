@@ -47,4 +47,9 @@ public class TableTest {
 
 		assertThat(table.sumChickenCategory()).isEqualTo(15);
 	}
+
+	@Test
+	void calculateTotalMoneyTest() {
+
+	}
 }
