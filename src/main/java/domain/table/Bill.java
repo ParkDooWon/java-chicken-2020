@@ -15,6 +15,10 @@ public class Bill {
 	private final Map<Menu, Quantity> orders = new HashMap<>();
 
 	public Bill() {
+		initializeBill();
+	}
+
+	public void initializeBill() {
 		for (Menu menu : MenuRepository.menus()) {
 			orders.put(menu, Quantity.zero());
 		}
@@ -35,9 +39,9 @@ public class Bill {
 			.sum();
 	}
 
-	public int calculateTotal() {
+	public double calculateTotal() {
 		return orders.entrySet().stream()
-			.mapToInt(bill -> calculateMenuPrice(bill.getKey(), bill.getValue()))
+			.mapToDouble(bill -> calculateMenuPrice(bill.getKey(), bill.getValue()))
 			.sum();
 	}
 

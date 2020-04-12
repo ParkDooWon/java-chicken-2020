@@ -8,7 +8,7 @@ public class Table {
 
 	public Table(final int number) {
 		this.number = number;
-		bill = new Bill();
+		bill = new Bill();    //강한 결합
 	}
 
 	public void addQuantity(Menu menu, Quantity quantity) {
