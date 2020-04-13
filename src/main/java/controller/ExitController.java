@@ -11,6 +11,6 @@ import domain.table.Tables;
 public class ExitController implements Controller {
 	@Override
 	public void run(Tables tables, Menus menus) {
-
+		System.out.println("POS를 종료합니다.");
 	}
 }
