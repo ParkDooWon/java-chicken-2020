@@ -16,9 +16,15 @@ import view.OutputView;
 public class RegisterController implements Controller {
 	@Override
 	public void run(Tables tables, Menus menus) {
-		Table table = inputTable(tables);
-		Menu menu = inputMenu(menus);
-		Quantity inputQuantity = inputQuantity();
+		try {
+			Table table = inputTable(tables);
+			Menu menu = inputMenu(menus);
+			Quantity inputQuantity = inputQuantity();
+			table.addQuantity(menu, inputQuantity);
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e);
+			run(tables, menus);
+		}
 	}
 
 	private Quantity inputQuantity() {

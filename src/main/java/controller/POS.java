@@ -15,8 +15,13 @@ public class POS {
 	public void run() {
 		final Tables tables = new Tables();
 		final Menus menus = new Menus();
-		Command command = inputCommand();
-		command.getController().run(tables, menus);
+		Command command;
+
+		do {
+			OutputView.printMain();
+			command = inputCommand();
+			command.getController().run(tables, menus);
+		} while (!command.isExit());
 	}
 
 	private Command inputCommand() {

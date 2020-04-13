@@ -33,6 +33,10 @@ public enum Command {
 			.orElseThrow(() -> new InvalidCommandException(InvalidCommandException.INVALID_COMMAND_NUMBER));
 	}
 
+	public boolean isExit() {
+		return this == EXIT_POS;
+	}
+
 	public Controller getController() {
 		return controller;
 	}

@@ -8,7 +8,7 @@ public class InputView {
 	public static String input() {
 		String input = SCANNER.nextLine();
 		validateNumber(input);
-		return SCANNER.nextLine();
+		return input;
 	}
 
 	private static void validateNumber(String input) {

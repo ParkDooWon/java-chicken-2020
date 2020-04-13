@@ -3,6 +3,7 @@ package domain.table;
 import domain.menu.Menu;
 
 public class Table {
+	private static final int FINISH_PAID = 0;
 	private final int number;
 	private final Bill bill;
 
@@ -23,12 +24,16 @@ public class Table {
 		return bill;
 	}
 
+	public int sumChickenCategory() {
+		return bill.sumChickenCategory();
+	}
+
 	@Override
 	public String toString() {
 		return Integer.toString(number);
 	}
 
-	public int sumChickenCategory() {
-		return bill.sumChickenCategory();
+	public boolean isPaidTable() {
+		return bill.calculateTotal() == FINISH_PAID;
 	}
 }

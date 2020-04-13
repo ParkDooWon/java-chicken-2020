@@ -30,4 +30,11 @@ public class CommandTest {
 			.isInstanceOf(InvalidCommandException.class)
 			.hasMessage(InvalidCommandException.INVALID_COMMAND_NUMBER);
 	}
+
+	@DisplayName("EXIT 명령을 선택했는지 확인")
+	@ParameterizedTest
+	@CsvSource({"REGISTER, false", "PAY, false", "EXIT_POS, true"})
+	void isExitTest(Command command, boolean expected) {
+		assertThat(command.isExit()).isEqualTo(expected);
+	}
 }
