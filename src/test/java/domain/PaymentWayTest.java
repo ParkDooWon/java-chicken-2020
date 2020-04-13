@@ -18,14 +18,14 @@ public class PaymentWayTest {
 	@DisplayName("번호에 따른 결제 수단 Enum을 반환")
 	@ParameterizedTest
 	@CsvSource({"1, CARD", "2, CASH"})
-	void ofTest(int input, PaymentWay paymentWay) {
+	void ofTest(String input, PaymentWay paymentWay) {
 		assertThat(PaymentWay.of(input)).isEqualTo(paymentWay);
 	}
 
 	@DisplayName("잘못된 결제 수단 번호 입력시 예외 발생")
 	@ParameterizedTest
-	@ValueSource(ints = {0, 4})
-	void invalidInput(int input) {
+	@ValueSource(strings = {"0", "4"})
+	void invalidInput(String input) {
 		assertThatThrownBy(() -> PaymentWay.of(input))
 			.isInstanceOf(InvalidPaymentException.class)
 			.hasMessage(InvalidPaymentException.INVALID_PAYMENTWAY);

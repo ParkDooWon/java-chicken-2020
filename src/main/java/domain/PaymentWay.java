@@ -10,20 +10,20 @@ import domain.exception.InvalidPaymentException;
  *   @author ParkDooWon
  */
 public enum PaymentWay {
-	CARD(1, 1),
-	CASH(2, 0.95);
+	CARD("1", 1),
+	CASH("2", 0.95);
 
-	private int paymentWay;
+	private String paymentWay;
 	private double discountRatio;
 
-	PaymentWay(int paymentWay, double discountRatio) {
+	PaymentWay(String paymentWay, double discountRatio) {
 		this.paymentWay = paymentWay;
 		this.discountRatio = discountRatio;
 	}
 
-	public static PaymentWay of(int paymentWay) {
+	public static PaymentWay of(String paymentWay) {
 		return Arrays.stream(PaymentWay.values())
-			.filter(p -> p.paymentWay == paymentWay)
+			.filter(p -> p.paymentWay.equals(paymentWay))
 			.findFirst()
 			.orElseThrow(() -> new InvalidPaymentException(InvalidPaymentException.INVALID_PAYMENTWAY));
 	}

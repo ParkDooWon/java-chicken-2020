@@ -3,6 +3,8 @@ package view;
 import java.util.List;
 
 import domain.menu.Menu;
+import domain.table.Bill;
+import domain.table.Quantity;
 import domain.table.Table;
 
 public class OutputView {
@@ -56,10 +58,6 @@ public class OutputView {
         System.out.println("## 원하는 기능을 선택하세요.");
     }
 
-    public static void printError(IllegalArgumentException e) {
-        System.err.println(e.getMessage());
-    }
-
     public static void printinputTable() {
         System.out.println("## 테이블을 선택하세요.");
     }
@@ -74,5 +72,33 @@ public class OutputView {
 
     public static void printMain() {
         System.out.println("## 메인화면" + NEW_LINE + "1 - 주문등록" + NEW_LINE + "2 - 결제하기" + NEW_LINE + "3 - 프로그램 종료");
+        System.out.println();
+    }
+
+    public static void printBill(Table table) {
+        System.out.println("## 주문 내역");
+        System.out.println("메뉴 수량 금액");
+        Bill bill = table.getBill();
+        bill.getOrders().entrySet().stream()
+            .filter(order -> !order.getValue().equals(Quantity.zero()))
+            .forEach(order -> System.out.println(
+                order.getKey().getName() + " " + order.getValue().getQuantity() + " " + (order.getKey().getPrice()
+                    * order.getValue().getQuantity())));
+        System.out.println();
+    }
+
+    public static void printError(IllegalArgumentException e) {
+        System.err.println(e.getMessage());
+        System.out.println();
+    }
+
+    public static void printInputPaymentWay(int tableNumber) {
+        System.out.println(String.format("## %d번 테이블의 결제를 진행합니다.", tableNumber));
+        System.out.println("## 신용 카드는 1번, 현금은 2번");
+    }
+
+    public static void printTotalMoney(double totalMoney) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.println(totalMoney + NEW_LINE);
     }
 }

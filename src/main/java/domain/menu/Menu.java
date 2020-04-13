@@ -15,20 +15,24 @@ public class Menu {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return category + " " + number + " - " + name + " : " + price + "원";
+    public boolean isChicken() {
+        return this.category.isChicken();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public boolean isChicken() {
-        return this.category.isChicken();
-    }
-
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return category + " " + number + " - " + name + " : " + price + "원";
     }
 }

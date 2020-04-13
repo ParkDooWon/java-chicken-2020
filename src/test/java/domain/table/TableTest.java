@@ -1,6 +1,7 @@
 package domain.table;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -59,5 +60,29 @@ public class TableTest {
 
 		assertThat(orderedTable.isPaidTable()).isFalse();
 		assertThat(paidTable.isPaidTable()).isTrue();
+	}
+
+	@Test
+	void sumBillTest() {
+		Table table = tables.getSelectTable(6);
+		table.addQuantity(chicken1, quantity1);
+		table.addQuantity(chicken2, quantity2);
+
+		double billSum =
+			(chicken1.getPrice() * quantity1.getQuantity()) + (chicken2.getPrice() * quantity2.getQuantity());
+		assertThat(table.sumBill()).isEqualTo(billSum);
+	}
+
+	@Test
+	void initializeBillTest() {
+		Table table = tables.getSelectTable(6);
+		table.addQuantity(chicken1, quantity1);
+		table.addQuantity(chicken2, quantity2);
+
+		assertTrue(table.getBill().calculateTotal() > 0);
+
+		table.initializeBill();
+
+		assertEquals(0, table.getBill().calculateTotal());
 	}
 }
