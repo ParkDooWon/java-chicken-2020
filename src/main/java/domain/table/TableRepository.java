@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class TableRepository {
-    public static List<Table> tables() {
-        return Collections.unmodifiableList(createTables());
+    public static List<Table> createTables() {
+        return Collections.unmodifiableList(initializeTables());
     }
 
-    public static List<Table> createTables() {
+    public static List<Table> initializeTables() {
         List<Table> tables = new ArrayList<>();
         tables.add(new Table(1, new Bill()));
         tables.add(new Table(2, new Bill()));

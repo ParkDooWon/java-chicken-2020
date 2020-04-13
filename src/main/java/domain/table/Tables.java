@@ -13,7 +13,7 @@ public class Tables {
 	private List<Table> tables;
 
 	public Tables() {
-		this.tables = TableRepository.tables();
+		this.tables = TableRepository.createTables();
 	}
 
 	public Table getSelectTable(int tableNumber) {

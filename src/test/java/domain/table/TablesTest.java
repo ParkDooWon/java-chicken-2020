@@ -25,10 +25,10 @@ public class TablesTest {
 
 	private static Stream<Arguments> inputTablesNumber() {
 		return Stream.of(
-			Arguments.of(1, TableRepository.tables().get(0)),
-			Arguments.of(5, TableRepository.tables().get(3)),
-			Arguments.of(6, TableRepository.tables().get(4)),
-			Arguments.of(8, TableRepository.tables().get(5))
+			Arguments.of(1, TableRepository.createTables().get(0)),
+			Arguments.of(5, TableRepository.createTables().get(3)),
+			Arguments.of(6, TableRepository.createTables().get(4)),
+			Arguments.of(8, TableRepository.createTables().get(5))
 		);
 	}
 
