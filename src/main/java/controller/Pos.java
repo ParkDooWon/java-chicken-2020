@@ -11,20 +11,20 @@ import view.OutputView;
  *
  *   @author ParkDooWon
  */
-public class POS {
+public class Pos {
 	public void run() {
 		final Tables tables = new Tables();
 		final Menus menus = new Menus();
 
 		try {
-			runPOS(tables, menus);
+			runPos(tables, menus);
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e);
 			run();
 		}
 	}
 
-	private void runPOS(Tables tables, Menus menus) {
+	private void runPos(Tables tables, Menus menus) {
 		Command command;
 		do {
 			OutputView.printMain();
