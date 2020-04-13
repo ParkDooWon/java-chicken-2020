@@ -1,7 +1,7 @@
 package controller;
 
-import domain.MoneyCalculator;
 import domain.PaymentWay;
+import domain.TotalMoney;
 import domain.exception.InvalidPaymentException;
 import domain.exception.InvalidTableException;
 import domain.menu.Menus;
@@ -22,7 +22,7 @@ public class PayController implements Controller {
 		Table table = inputTable(tables);
 		OutputView.printBill(table);
 		PaymentWay paymentWay = inputPaymentWay(table.getNumber());
-		double totalMoney = MoneyCalculator.calculateTotalMoney(table.sumBill(), table.sumChickenCategory(),
+		TotalMoney totalMoney = TotalMoney.calculateTotalMoney(table.sumBill(), table.sumChickenCategory(),
 			paymentWay);
 		OutputView.printTotalMoney(totalMoney);
 		table.initializeBill();

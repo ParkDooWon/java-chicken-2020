@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 
+import domain.TotalMoney;
 import domain.menu.Menu;
 import domain.table.Bill;
 import domain.table.Quantity;
@@ -97,8 +98,8 @@ public class OutputView {
         System.out.println("## 신용 카드는 1번, 현금은 2번");
     }
 
-    public static void printTotalMoney(double totalMoney) {
+    public static void printTotalMoney(TotalMoney totalMoney) {
         System.out.println("## 최종 결제할 금액");
-        System.out.println(totalMoney + NEW_LINE);
+        System.out.println(totalMoney.getTotalMoney() + NEW_LINE);
     }
 }

@@ -5,16 +5,26 @@ package domain;
  *
  *   @author ParkDooWon
  */
-public class MoneyCalculator {
+public class TotalMoney {
 	private static final int CHICKEN_UNIT = 10;
 	private static final int CHICKEN_DISCOUNT_MONEY = 10_000;
 
-	public static double calculateTotalMoney(double sumBill, int chickenCount, PaymentWay paymentWay) {
+	private final double totalMoney;
+
+	private TotalMoney(double totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+
+	public static TotalMoney calculateTotalMoney(double sumBill, int chickenCount, PaymentWay paymentWay) {
 		sumBill -= chickenDiscountMoney(chickenCount);
-		return paymentWay.applyPaymentWayDiscount(sumBill);
+		return new TotalMoney(paymentWay.applyPaymentWayDiscount(sumBill));
 	}
 
 	private static double chickenDiscountMoney(int chickenCount) {
 		return (double)(chickenCount / CHICKEN_UNIT) * CHICKEN_DISCOUNT_MONEY;
+	}
+
+	public double getTotalMoney() {
+		return totalMoney;
 	}
 }

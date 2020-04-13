@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  *   @author ParkDooWon
  */
-public class MoneyCalculatorTest {
+public class TotalMoneyTest {
 	private static Stream<Arguments> inputMoney() {
 		return Stream.of(
 			Arguments.of(100_000, 0, PaymentWay.CARD, 100_000),
@@ -30,6 +30,7 @@ public class MoneyCalculatorTest {
 	@ParameterizedTest
 	@MethodSource("inputMoney")
 	void calculateFinalMoneyTest(double sumBill, int chickenCount, PaymentWay paymentWay, double totalMoney) {
-		assertThat(MoneyCalculator.calculateTotalMoney(sumBill, chickenCount, paymentWay)).isEqualTo(totalMoney);
+		assertThat(TotalMoney.calculateTotalMoney(sumBill, chickenCount, paymentWay).getTotalMoney()).isEqualTo(
+			totalMoney);
 	}
 }
