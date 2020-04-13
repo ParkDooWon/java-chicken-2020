@@ -6,12 +6,14 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import domain.exception.InvalidTableException;
+import domain.menu.MenuRepository;
 
 /**
  *   class description
@@ -21,7 +23,7 @@ import domain.exception.InvalidTableException;
 public class TablesTest {
 	private Tables tables;
 
-	private static Stream<Arguments> inputTables() {
+	private static Stream<Arguments> inputTablesNumber() {
 		return Stream.of(
 			Arguments.of(1, TableRepository.tables().get(0)),
 			Arguments.of(5, TableRepository.tables().get(3)),
@@ -46,8 +48,17 @@ public class TablesTest {
 
 	@DisplayName("선택한 테이블을 반환")
 	@ParameterizedTest
-	@MethodSource("inputTables")
+	@MethodSource("inputTablesNumber")
 	void getSelectMenuTest(int tableNumber, Table table) {
 		assertThat(tables.getSelectTable(tableNumber)).isEqualTo(table);
+	}
+
+	@Test
+	void isEmptyTablesTest() {
+		Table table = tables.getSelectTable(8);
+		assertThat(tables.isEmptyTables()).isTrue();
+
+		table.addQuantity(MenuRepository.menus().get(0), Quantity.of(2));
+		assertThat(tables.isEmptyTables()).isFalse();
 	}
 }

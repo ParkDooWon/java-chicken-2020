@@ -5,18 +5,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class TableRepository {
-    private static final List<Table> tables = new ArrayList<>();
-
-    static {
-        tables.add(new Table(1));
-        tables.add(new Table(2));
-        tables.add(new Table(3));
-        tables.add(new Table(5));
-        tables.add(new Table(6));
-        tables.add(new Table(8));
+    public static List<Table> tables() {
+        return Collections.unmodifiableList(createTables());
     }
 
-    public static List<Table> tables() {
-        return Collections.unmodifiableList(tables);
+    public static List<Table> createTables() {
+        List<Table> tables = new ArrayList<>();
+        tables.add(new Table(1, new Bill()));
+        tables.add(new Table(2, new Bill()));
+        tables.add(new Table(3, new Bill()));
+        tables.add(new Table(5, new Bill()));
+        tables.add(new Table(6, new Bill()));
+        tables.add(new Table(8, new Bill()));
+        return tables;
     }
 }

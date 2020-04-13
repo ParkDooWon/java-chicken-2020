@@ -23,6 +23,11 @@ public class Tables {
 			.orElseThrow(() -> new InvalidTableException(InvalidTableException.INVALID_TABLE_NUMBER));
 	}
 
+	public boolean isEmptyTables() {
+		return tables.stream()
+			.allMatch(Table::isPaidTable);
+	}
+
 	public List<Table> getTables() {
 		return tables;
 	}

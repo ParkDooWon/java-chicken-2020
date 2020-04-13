@@ -1,5 +1,7 @@
 package domain.table;
 
+import java.util.Objects;
+
 import domain.menu.Menu;
 
 public class Table {
@@ -8,9 +10,9 @@ public class Table {
 	private final int number;
 	private final Bill bill;
 
-	public Table(final int number) {
+	public Table(final int number, final Bill bill) {
 		this.number = number;
-		bill = new Bill();    //강한 결합
+		this.bill = bill;
 	}
 
 	public void addQuantity(Menu menu, Quantity quantity) {
@@ -39,6 +41,22 @@ public class Table {
 
 	public Bill getBill() {
 		return bill;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Table table = (Table)o;
+		return number == table.number &&
+			Objects.equals(bill, table.bill);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(number, bill);
 	}
 
 	@Override

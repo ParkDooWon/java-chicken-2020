@@ -15,8 +15,17 @@ public class POS {
 	public void run() {
 		final Tables tables = new Tables();
 		final Menus menus = new Menus();
-		Command command;
 
+		try {
+			runPOS(tables, menus);
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e);
+			run();
+		}
+	}
+
+	private void runPOS(Tables tables, Menus menus) {
+		Command command;
 		do {
 			OutputView.printMain();
 			command = inputCommand();

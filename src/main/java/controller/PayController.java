@@ -2,6 +2,8 @@ package controller;
 
 import domain.MoneyCalculator;
 import domain.PaymentWay;
+import domain.exception.InvalidPaymentException;
+import domain.exception.InvalidTableException;
 import domain.menu.Menus;
 import domain.table.Table;
 import domain.table.Tables;
@@ -16,6 +18,7 @@ import view.OutputView;
 public class PayController implements Controller {
 	@Override
 	public void run(Tables tables, Menus menus) {
+		validateEmptyTables(tables);
 		Table table = inputTable(tables);
 		OutputView.printBill(table);
 		PaymentWay paymentWay = inputPaymentWay(table.getNumber());
@@ -25,15 +28,39 @@ public class PayController implements Controller {
 		table.initializeBill();
 	}
 
+	private void validateEmptyTables(Tables tables) {
+		if (tables.isEmptyTables()) {
+			throw new InvalidTableException(InvalidTableException.EMPTY_BILL_TABLES);
+		}
+	}
+
 	private Table inputTable(Tables tables) {
-		OutputView.printTables(tables.getTables());
-		OutputView.printinputTable();
-		int inputTableNumber = Integer.parseInt(InputView.input());
-		return tables.getSelectTable(inputTableNumber);
+		try {
+			OutputView.printTables(tables.getTables());
+			OutputView.printinputTable();
+			int inputTableNumber = Integer.parseInt(InputView.input());
+			Table table = tables.getSelectTable(inputTableNumber);
+			validateEmptyBillTable(table);
+			return table;
+		} catch (InvalidTableException e) {
+			OutputView.printError(e);
+			return inputTable(tables);
+		}
+	}
+
+	private void validateEmptyBillTable(Table table) {
+		if (table.isPaidTable()) {
+			throw new InvalidTableException(InvalidTableException.EMPTY_BILL_TABLE);
+		}
 	}
 
 	private PaymentWay inputPaymentWay(int tableNumber) {
-		OutputView.printInputPaymentWay(tableNumber);
-		return PaymentWay.of(InputView.input());
+		try {
+			OutputView.printInputPaymentWay(tableNumber);
+			return PaymentWay.of(InputView.input());
+		} catch (InvalidPaymentException e) {
+			OutputView.printError(e);
+			return inputPaymentWay(tableNumber);
+		}
 	}
 }

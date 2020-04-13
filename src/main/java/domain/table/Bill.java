@@ -2,6 +2,7 @@ package domain.table;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
@@ -47,5 +48,20 @@ public class Bill {
 
 	private int calculateMenuPrice(Menu menu, Quantity quantity) {
 		return menu.getPrice() * quantity.getQuantity();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Bill bill = (Bill)o;
+		return Objects.equals(orders, bill.orders);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(orders);
 	}
 }
